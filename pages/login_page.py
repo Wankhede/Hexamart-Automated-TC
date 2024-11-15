@@ -3,9 +3,9 @@ from selenium.webdriver.common.by import By
 
 
 class LoginPage:
-    def __init__(self, driver):
-        self.driver = driver
-        driver.set_page_load_timeout(30)  # Wait for 30 seconds for page load
+    def __init__(self, driver_login):
+        self.driver = driver_login
+        self.driver.set_page_load_timeout(30)  # Wait for 30 seconds for page load
 
         self.username_field ="//*[@name='username']"
         self.password_field = "//*[@name='password']"

@@ -1,20 +1,18 @@
-# tests/test_login.py
 from time import sleep
 import pytest
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import wait
-from selenium.webdriver.support.wait import WebDriverWait
+
 
 from pages.login_page import LoginPage
-from tests.conftest import driver
+from tests.conftest import driver_login
 from utils.config import USERNAME, PASSWORD, WRONG_USERNAME, PASSWORD_WRONG
 
 class TestLogin:
 
     @pytest.fixture(autouse=True)
-    def setup(self, driver):
+    def setup(self, driver_login):
         """Fixture to set up the page object and driver."""
-        self.driver = driver
+        self.driver = driver_login
         self.driver.implicitly_wait(10)
         self.login_page = LoginPage(self.driver)
 

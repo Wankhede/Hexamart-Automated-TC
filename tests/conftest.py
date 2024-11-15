@@ -2,15 +2,29 @@ import os
 from datetime import datetime
 import pytest
 from selenium import webdriver
-from utils.config import BASE_URL
+from utils.config import LOGIN_URL, SIGNUP_URL
+
 
 @pytest.fixture
-def driver():
+def driver_login():
     #At the beginning of the test case
     driver_option = webdriver.ChromeOptions()
     driver_option.add_argument("--start-maximized")
     driver = webdriver.Chrome( options=driver_option)
-    driver.get(BASE_URL)
+    driver.get(LOGIN_URL)
+    driver.set_page_load_timeout(30)  # Wait for 30 seconds for page load
+
+    #This will be called when the test case is over
+    yield driver
+    driver.quit()
+
+@pytest.fixture
+def driver_signup():
+    #At the beginning of the test case
+    driver_option = webdriver.ChromeOptions()
+    driver_option.add_argument("--start-maximized")
+    driver = webdriver.Chrome( options=driver_option)
+    driver.get(SIGNUP_URL)
     driver.set_page_load_timeout(30)  # Wait for 30 seconds for page load
 
     #This will be called when the test case is over
